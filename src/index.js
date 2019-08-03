@@ -17,6 +17,10 @@ const draw = state => {
   // Apple
   ctx.fillStyle = 'red'
   ctx.fillRect(x(state.apple), y(state.apple), sizeX, sizeY)
+
+  // Snake
+  ctx.fillStyle = 'green'
+  state.snake.forEach(segment => ctx.fillRect(x(segment), y(segment), sizeX, sizeY))
 }
 
 draw(initialState)

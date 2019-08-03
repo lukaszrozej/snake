@@ -6,7 +6,7 @@ const UP = { x: 0, y: -1 }
 const initialState = {
   rows: 30,
   cols: 40,
-  snake: [{ x: 20, y: 15 }],
+  snake: [{ x: 20, y: 15 }, { x: 21, y: 15 }],
   moves: [RIGHT],
   apple: { x: 10, y: 15 },
   lastMoveTime: 0,
