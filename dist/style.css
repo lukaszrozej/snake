@@ -3,6 +3,7 @@ body {
   color: azure;
 
   display: flex;
-  justify-content: center;
-  align-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
