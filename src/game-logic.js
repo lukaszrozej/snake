@@ -4,8 +4,8 @@ const DOWN = { x: 0, y: 1 }
 const UP = { x: 0, y: -1 }
 
 const initialState = {
-  rows: 40,
-  cols: 30,
+  rows: 30,
+  cols: 40,
   snake: [{ x: 20, y: 15 }],
   moves: [RIGHT],
   apple: { x: 10, y: 15 },
