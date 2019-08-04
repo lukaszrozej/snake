@@ -10,10 +10,11 @@ const initialState = {
   snake: [{ x: 20, y: 15 }],
   actions: [],
   direction: RIGHT,
-  apple: { x: 10, y: 15 },
   timeOfLastMove: 0,
   timeBetweenMoves: 500,
+  apple: { x: 10, y: 15 },
   applesEaten: 0,
+  eating: false,
   gameOver: false
 }
 
@@ -29,6 +30,17 @@ const addAction = (state, action) => {
     actions: state.actions.concat(action)
   }
   return {...state, ...nextState}
+}
+
+const randomApple = (rows, cols, snake) => {
+  let apple = snake[0]
+  while (snake.find(equal(apple))) {
+    apple = {
+      x: Math.round(Math.random() * cols),
+      y: Math.round(Math.random() * rows),
+    }
+  }
+  return apple
 }
 
 const move = (state, time) => {
@@ -57,12 +69,20 @@ const move = (state, time) => {
     head.y >= state.rows ||
     snake.slice(1).find(equal(head))
 
+  const apple = state.eating
+    ? randomApple(state.rows, state.cols, snake)
+    : state.apple
+
+  const eating = equal(head)(state.apple)
+
   const nextState = {
-    timeOfLastMove,
+    snake,
     actions,
     direction,
-    snake,
-    gameOver
+    timeOfLastMove,
+    apple,
+    eating,
+    gameOver,
   }
 
   return {...state, ...nextState}
