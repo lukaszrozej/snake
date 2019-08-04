@@ -11,10 +11,12 @@ const initialState = {
   actions: [],
   direction: RIGHT,
   timeOfLastMove: 0,
-  timeBetweenMoves: 500,
+  timeBetweenMoves: 250,
   apple: { x: 10, y: 15 },
   applesEaten: 0,
   eating: false,
+  growing: 0,
+  growthPerApple: 1,
   gameOver: false
 }
 
@@ -55,12 +57,11 @@ const move = (state, time) => {
     : state.actions[0]
   
   const head = add(state.snake[0], direction)
+  const tail = state.growing
+    ? state.snake
+    : state.snake.slice(0,-1)
 
-  const snake = [
-    head,
-    // ...state.snake.slice(0,-1)
-    ...state.snake
-  ]
+  const snake = [head].concat(tail)
 
   const gameOver =
     head.x < 0 ||
@@ -75,6 +76,10 @@ const move = (state, time) => {
 
   const eating = equal(head)(state.apple)
 
+  const growing =
+    (state.growing ? state.growing - 1 : 0) + 
+    (state.eating ? state.growthPerApple : 0)
+
   const nextState = {
     snake,
     actions,
@@ -82,6 +87,7 @@ const move = (state, time) => {
     timeOfLastMove,
     apple,
     eating,
+    growing,
     gameOver,
   }
 
