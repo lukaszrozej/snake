@@ -2,6 +2,7 @@ const RIGHT = { x: 1, y: 0 }
 const LEFT = { x: -1, y: 0 }
 const DOWN = { x: 0, y: 1 }
 const UP = { x: 0, y: -1 }
+const RESTART = 'restart'
 
 const initialState = {
   rows: 30,
@@ -18,4 +19,6 @@ const initialState = {
 const equal = (p1, p2) => p1.x === p2.x && p1.y === p2.y
 const head = (state) => state.snake[0]
 
-export { RIGHT, LEFT, UP, DOWN, initialState, equal, head }
+const newState = state => state
+
+export { RIGHT, LEFT, UP, DOWN, RESTART, initialState, equal, head, newState }
