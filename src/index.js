@@ -1,4 +1,4 @@
-import { RIGHT, LEFT, UP, DOWN, RESTART, initialState, equal, head, newState } from './game-logic.js'
+import { RIGHT, LEFT, UP, DOWN, RESTART, initialState, equal, newState } from './game-logic.js'
 
 import { fromEvent, interval, animationFrameScheduler, merge } from 'rxjs'
 import { filter, map, scan } from 'rxjs/operators'
@@ -10,9 +10,9 @@ const ctx = canvas.getContext('2d')
 let previousHead = {}
 
 const draw = state => {
-  if (equal(previousHead)(head(state))) return
+  if (equal(previousHead)(state.snake[0])) return
 
-  previousHead = head(state)
+  previousHead = state.snake[0]
 
   const sizeX = Math.round(canvas.width / state.cols)
   const sizeY = Math.round(canvas.height / state.rows)

@@ -24,8 +24,6 @@ const add = (p1, p2) => ({
   y: p1.y + p2.y,
 })
 
-const head = state => state.snake[0]
-
 const addAction = (state, action) => {
   const nextState = {
     actions: state.actions.concat(action)
@@ -38,32 +36,32 @@ const move = (state, time) => {
 
   if (state.gameOver) return state
 
-  const timeOfMove = time
-  const nextActions = state.actions.slice(1)
-  const nextDirection = state.actions.length === 0 || opposite(state.direction, state.actions[0])
+  const timeOfLastMove = time
+  const actions = state.actions.slice(1)
+  const direction = state.actions.length === 0 || opposite(state.direction, state.actions[0])
     ? state.direction
     : state.actions[0]
   
-  const newHead = add(state.snake[0], nextDirection)
+  const head = add(state.snake[0], direction)
 
-  const newSnake = [
-    newHead,
+  const snake = [
+    head,
     // ...state.snake.slice(0,-1)
     ...state.snake
   ]
 
   const gameOver =
-    newHead.x < 0 ||
-    newHead.x >= state.cols ||
-    newHead.y < 0 ||
-    newHead.y >= state.rows ||
-    newSnake.slice(1).find(equal(newHead))
+    head.x < 0 ||
+    head.x >= state.cols ||
+    head.y < 0 ||
+    head.y >= state.rows ||
+    snake.slice(1).find(equal(head))
 
   const nextState = {
-    timeOfLastMove: timeOfMove,
-    actions: nextActions,
-    direction: nextDirection,
-    snake: newSnake,
+    timeOfLastMove,
+    actions,
+    direction,
+    snake,
     gameOver
   }
 
@@ -81,4 +79,4 @@ const newState = (state, action) => {
   }
 }
 
-export { RIGHT, LEFT, UP, DOWN, RESTART, initialState, equal, head, newState }
+export { RIGHT, LEFT, UP, DOWN, RESTART, initialState, equal, newState }
