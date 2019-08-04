@@ -10,7 +10,7 @@ const ctx = canvas.getContext('2d')
 let previousHead = {}
 
 const draw = state => {
-  if (equal(previousHead, head(state))) return
+  if (equal(previousHead)(head(state))) return
 
   previousHead = head(state)
 
@@ -45,7 +45,7 @@ const keyMapping = {
 
 const keyboardActions = fromEvent(document, 'keydown')
   .pipe(
-    filter(e => Object.keys(keyMapping).includes(e.keyCode)),
+    filter(e => keyMapping[e.keyCode]),
     map(e => keyMapping[e.keyCode])
   )
 
