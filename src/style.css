@@ -12,3 +12,18 @@ body {
   justify-content: space-evenly;
   align-items: center;
 }
+
+.message {
+  background: black;
+  padding: 1em;
+  color: white;
+  text-align: center;
+}
+
+.game-over {
+  font-size: 2em;
+}
+
+.hidden {
+  visibility: hidden;
+}

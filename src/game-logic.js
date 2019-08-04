@@ -11,7 +11,7 @@ const initialState = {
   actions: [],
   direction: RIGHT,
   timeOfLastMove: 0,
-  timeBetweenMoves: 250,
+  timeBetweenMoves: 150,
   apple: { x: 10, y: 15 },
   applesEaten: 0,
   eating: false,
@@ -61,14 +61,16 @@ const move = (state, time) => {
     ? state.snake
     : state.snake.slice(0,-1)
 
-  const snake = [head].concat(tail)
-
   const gameOver =
     head.x < 0 ||
     head.x >= state.cols ||
     head.y < 0 ||
     head.y >= state.rows ||
-    snake.slice(1).find(equal(head))
+    tail.find(equal(head))
+
+  const snake = gameOver
+    ? state.snake
+    : [head].concat(tail)
 
   const apple = state.eating
     ? randomApple(state.rows, state.cols, snake)

@@ -6,10 +6,17 @@ import { filter, map, scan } from 'rxjs/operators'
 
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
+const message = document.querySelector('.message')
 
 let previousHead = {}
 
 const draw = state => {
+  if (state.gameOver) {
+    message.classList.remove('hidden')
+  } else {
+    message.classList.add('hidden')
+  }
+
   if (equal(previousHead)(state.snake[0])) return
 
   previousHead = state.snake[0]
