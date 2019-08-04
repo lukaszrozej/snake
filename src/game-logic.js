@@ -24,14 +24,14 @@ const equal = p1 => p2 => p1.x === p2.x && p1.y === p2.y
 const opposite = (p1, p2) => p1.x === -p2.x && p1.y === -p2.y
 const add = (p1, p2) => ({
   x: p1.x + p2.x,
-  y: p1.y + p2.y,
+  y: p1.y + p2.y
 })
 
 const addAction = (state, action) => {
   const nextState = {
     actions: state.actions.concat(action)
   }
-  return {...state, ...nextState}
+  return { ...state, ...nextState }
 }
 
 const randomApple = (rows, cols, snake) => {
@@ -39,7 +39,7 @@ const randomApple = (rows, cols, snake) => {
   while (snake.find(equal(apple))) {
     apple = {
       x: Math.round(Math.random() * cols),
-      y: Math.round(Math.random() * rows),
+      y: Math.round(Math.random() * rows)
     }
   }
   return apple
@@ -55,11 +55,11 @@ const move = (state, time) => {
   const direction = state.actions.length === 0 || opposite(state.direction, state.actions[0])
     ? state.direction
     : state.actions[0]
-  
+
   const head = add(state.snake[0], direction)
   const tail = state.growing
     ? state.snake
-    : state.snake.slice(0,-1)
+    : state.snake.slice(0, -1)
 
   const gameOver =
     head.x < 0 ||
@@ -79,7 +79,7 @@ const move = (state, time) => {
   const eating = equal(head)(state.apple)
 
   const growing =
-    (state.growing ? state.growing - 1 : 0) + 
+    (state.growing ? state.growing - 1 : 0) +
     (state.eating ? state.growthPerApple : 0)
 
   const nextState = {
@@ -90,14 +90,14 @@ const move = (state, time) => {
     apple,
     eating,
     growing,
-    gameOver,
+    gameOver
   }
 
-  return {...state, ...nextState}
+  return { ...state, ...nextState }
 }
 
 const newState = (state, action) => {
-  switch(action) {
+  switch (action) {
     case RESTART: return initialState
     case LEFT:
     case RIGHT:

@@ -3,7 +3,6 @@ import { RIGHT, LEFT, UP, DOWN, RESTART, initialState, equal, newState } from '.
 import { fromEvent, interval, animationFrameScheduler, merge } from 'rxjs'
 import { filter, map, scan } from 'rxjs/operators'
 
-
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 const message = document.querySelector('.message')
