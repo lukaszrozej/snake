@@ -11,12 +11,12 @@ const initialState = {
   actions: [],
   direction: RIGHT,
   timeOfLastMove: 0,
-  timeBetweenMoves: 150,
+  timeBetweenMoves: 100,
   apple: { x: 10, y: 15 },
   applesEaten: 0,
   eating: false,
   growing: 0,
-  growthPerApple: 1,
+  growthPerApple: 5,
   gameOver: false
 }
 
