@@ -7,12 +7,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Łukasz Rożej",
-  "license": "ISC",
-  "devDependencies": {},
-  "dependencies": {},
-  "standard": {
-    "ignore": [
-      "/dist/main.js"
-    ]
-  }
+  "license": "ISC"
 }
