@@ -9,9 +9,7 @@
   "author": "Łukasz Rożej",
   "license": "ISC",
   "devDependencies": {},
-  "dependencies": {
-    "rxjs": "^6.5.2"
-  },
+  "dependencies": {},
   "standard": {
     "ignore": [
       "/dist/main.js"
