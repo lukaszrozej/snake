@@ -107,4 +107,4 @@ const newState = (state, action) => {
   }
 }
 
-export { RIGHT, LEFT, UP, DOWN, RESTART, initialState, equal, newState }
+// export { RIGHT, LEFT, UP, DOWN, RESTART, initialState, equal, newState }

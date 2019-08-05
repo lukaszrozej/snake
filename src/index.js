@@ -1,7 +1,11 @@
-import { RIGHT, LEFT, UP, DOWN, RESTART, initialState, equal, newState } from './game-logic.js'
+// import { RIGHT, LEFT, UP, DOWN, RESTART, initialState, equal, newState } from './game-logic.js'
 
-import { fromEvent, interval, animationFrameScheduler, merge } from 'rxjs'
-import { filter, map, scan } from 'rxjs/operators'
+// import { fromEvent, interval, animationFrameScheduler, merge } from 'rxjs'
+// import { filter, map, scan } from 'rxjs/operators'
+
+const { fromEvent, interval, animationFrameScheduler, merge } = rxjs
+const { filter, map, scan } = rxjs.operators
+
 
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
