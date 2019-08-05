@@ -39,8 +39,8 @@ const SnakeGame = () => {
     let apple = snake[0]
     while (snake.find(equal(apple))) {
       apple = {
-        x: Math.round(Math.random() * cols),
-        y: Math.round(Math.random() * rows)
+        x: Math.floor(Math.random() * cols),
+        y: Math.floor(Math.random() * rows)
       }
     }
     return apple
