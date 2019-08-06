@@ -50,12 +50,9 @@ const SnakeGame = () => {
     return apple
   }
 
-  const move = (state, time) => {
-    if (time - state.timeOfLastMove < state.timeBetweenMoves ||
-        state.gameOver ||
-        state.paused) return state
+  const move = state => {
+    if (state.gameOver || state.paused) return state
 
-    const timeOfLastMove = time
     const actions = state.actions.slice(1)
     const direction = state.actions.length === 0 || opposite(state.direction, state.actions[0])
       ? state.direction
@@ -91,7 +88,6 @@ const SnakeGame = () => {
       snake,
       actions,
       direction,
-      timeOfLastMove,
       apple,
       eating,
       growing,
@@ -114,7 +110,7 @@ const SnakeGame = () => {
       case UP:
       case DOWN: return addAction(state, action)
       case TOGGLE_PAUSE: return togglePause(state)
-      default: return move(state, action)
+      default: return move(state)
     }
   }
 

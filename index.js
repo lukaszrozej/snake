@@ -1,8 +1,8 @@
-/* global rxjs, SnakeGame */
+/* global rxjs, SnakeGame, config */
 
 const { RIGHT, LEFT, UP, DOWN, RESTART, TOGGLE_PAUSE, initialState, equal, newState } = SnakeGame()
 
-const { fromEvent, interval, animationFrameScheduler, merge } = rxjs
+const { fromEvent, interval, merge } = rxjs
 const { filter, map, scan } = rxjs.operators
 
 const canvas = document.querySelector('canvas')
@@ -69,8 +69,7 @@ const keyboardActions = fromEvent(document, 'keydown')
     map(e => keyMapping[e.keyCode])
   )
 
-const timeTicks = interval(0, animationFrameScheduler)
-  .pipe(map(() => Date.now()))
+const timeTicks = interval(config.timeBetweenMoves)
 
 const actions = merge(keyboardActions, timeTicks)
 
