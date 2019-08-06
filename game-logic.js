@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 const SnakeGame = () => {
+/* eslint-eneble no-unused-vars */
   const RIGHT = { x: 1, y: 0 }
   const LEFT = { x: -1, y: 0 }
   const DOWN = { x: 0, y: 1 }
@@ -116,5 +118,3 @@ const SnakeGame = () => {
 
   return { RIGHT, LEFT, UP, DOWN, RESTART, TOGGLE_PAUSE, initialState, equal, newState }
 }
-
-SnakeGame()
