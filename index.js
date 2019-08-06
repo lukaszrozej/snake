@@ -7,18 +7,29 @@ const { filter, map, scan } = rxjs.operators
 
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
-const message = document.querySelector('.message')
+const $message = document.querySelector('.message')
+const $main = document.querySelector('.main')
+const $additional = document.querySelector('.additional')
 
 let previousHead = {}
 
+const showMessage = (main, additional) => {
+  $message.classList.remove('hidden')
+  $main.textContent = main
+  $additional.textContent = additional
+}
+
+const hideMessage = () => {
+  $message.classList.add('hidden')
+}
+
 const draw = state => {
-  if (state.gameOver) {
-    message.classList.remove('hidden')
-  } else {
-    message.classList.add('hidden')
-  }
+  if (state.paused) showMessage('PAUSED', '(press space to unpause)')
+  if (state.gameOver) showMessage('GAME OVER', '(press Enter to restart)')
 
   if (equal(previousHead)(state.snake[0])) return
+
+  hideMessage()
 
   previousHead = state.snake[0]
 
