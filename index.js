@@ -1,6 +1,6 @@
 /* global rxjs, SnakeGame */
 
-const { RIGHT, LEFT, UP, DOWN, RESTART, initialState, equal, newState } = SnakeGame()
+const { RIGHT, LEFT, UP, DOWN, RESTART, TOGGLE_PAUSE, initialState, equal, newState } = SnakeGame()
 
 const { fromEvent, interval, animationFrameScheduler, merge } = rxjs
 const { filter, map, scan } = rxjs.operators
@@ -44,7 +44,8 @@ const draw = state => {
 draw(initialState)
 
 const keyMapping = {
-  32: RESTART,
+  13: RESTART,
+  32: TOGGLE_PAUSE,
   37: LEFT,
   38: UP,
   39: RIGHT,
