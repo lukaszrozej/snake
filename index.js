@@ -5,8 +5,14 @@ const { RIGHT, LEFT, UP, DOWN, equal, start, restart, addAction, togglePause, mo
 const { fromEvent, interval, merge } = rxjs
 const { filter, map, scan, startWith } = rxjs.operators
 
-const canvas = document.querySelector('canvas')
-const ctx = canvas.getContext('2d')
+const width = config.cols * config.squareSize
+const height = config.rows * config.squareSize
+
+const $canvas = document.querySelector('canvas')
+$canvas.width = width
+$canvas.height = height
+const ctx = $canvas.getContext('2d')
+
 const $message = document.querySelector('.message')
 const $main = document.querySelector('.main')
 const $additional = document.querySelector('.additional')
@@ -33,23 +39,20 @@ const draw = state => {
 
   previousHead = state.snake[0]
 
-  const sizeX = Math.round(canvas.width / state.cols)
-  const sizeY = Math.round(canvas.height / state.rows)
-
-  const x = point => point.x * sizeX
-  const y = point => point.y * sizeY
+  const x = point => point.x * config.squareSize
+  const y = point => point.y * config.squareSize
 
   // Clear
   ctx.fillStyle = 'black'
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
+  ctx.fillRect(0, 0, width, height)
 
   // Apple
   ctx.fillStyle = 'red'
-  ctx.fillRect(x(state.apple), y(state.apple), sizeX, sizeY)
+  ctx.fillRect(x(state.apple), y(state.apple), config.squareSize, config.squareSize)
 
   // Snake
   ctx.fillStyle = 'green'
-  state.snake.forEach(segment => ctx.fillRect(x(segment), y(segment), sizeX, sizeY))
+  state.snake.forEach(segment => ctx.fillRect(x(segment), y(segment), config.squareSize, config.squareSize))
 }
 
 const keyMapping = {

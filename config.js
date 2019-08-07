@@ -4,5 +4,6 @@ const config = {
   timeBetweenMoves: 100,
   rows: 30,
   cols: 40,
+  squareSize: 20,
   growthPerApple: 5
 }
