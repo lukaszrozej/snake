@@ -5,8 +5,6 @@ const SnakeGame = () => {
   const LEFT = { x: -1, y: 0 }
   const DOWN = { x: 0, y: 1 }
   const UP = { x: 0, y: -1 }
-  const RESTART = 'restart'
-  const TOGGLE_PAUSE = 'toggle_pause'
 
   const initialState = {
     rows: 30,
@@ -14,10 +12,7 @@ const SnakeGame = () => {
     snake: [{ x: 20, y: 15 }],
     actions: [],
     direction: RIGHT,
-    timeOfLastMove: 0,
-    timeBetweenMoves: 100,
     apple: { x: 10, y: 15 },
-    applesEaten: 0,
     eating: false,
     growing: 0,
     growthPerApple: 5,
@@ -32,7 +27,14 @@ const SnakeGame = () => {
     y: p1.y + p2.y
   })
 
-  const addAction = (state, action) => {
+  const start = config => ({ ...initialState, ...config })
+
+  const restart = state => ({
+    ...initialState,
+    ...{ rows: state.rows, cols: state.cols, growthPerApple: state.growthPerApple }
+  })
+
+  const addAction = action => state => {
     if (state.paused) return state
 
     const nextState = {
@@ -104,17 +106,7 @@ const SnakeGame = () => {
       ? { ...state, ...{ paused: false } }
       : { ...state, ...{ paused: true } }
 
-  const newState = (state, action) => {
-    switch (action) {
-      case RESTART: return initialState
-      case LEFT:
-      case RIGHT:
-      case UP:
-      case DOWN: return addAction(state, action)
-      case TOGGLE_PAUSE: return togglePause(state)
-      default: return move(state)
-    }
-  }
+  const newState = (state, action) => action(state)
 
-  return { RIGHT, LEFT, UP, DOWN, RESTART, TOGGLE_PAUSE, initialState, equal, newState }
+  return { RIGHT, LEFT, UP, DOWN, equal, start, restart, addAction, togglePause, move, newState }
 }
