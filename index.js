@@ -14,15 +14,15 @@ $canvas.height = height
 const ctx = $canvas.getContext('2d')
 
 const $message = document.querySelector('.message')
-const $main = document.querySelector('.main')
-const $additional = document.querySelector('.additional')
+const $h = document.querySelector('h1')
+const $p = document.querySelector('p')
 
 let previousHead = {}
 
 const showMessage = (main, additional) => {
   $message.classList.remove('hidden')
-  $main.textContent = main
-  $additional.textContent = additional
+  $h.textContent = main
+  $p.textContent = additional
 }
 
 const hideMessage = () => {
